@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoURI = 'mongodb://127.0.0.1:27017/auth'
+const mongoURI = 'mongodb://127.0.0.1:27017/Notebook-app'
 
 const connectToMongo = async () => {
     try {
