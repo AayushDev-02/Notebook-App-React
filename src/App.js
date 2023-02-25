@@ -7,6 +7,7 @@ import {
 
 import About from './components/About';
 import Hero from './components/Hero';
+// import Alert from './components/Alert';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
 import NotePage from './components/NotePage';
@@ -19,6 +20,7 @@ function App() {
       <NoteState>
         <Router>
           <Navbar />
+          {/* <Alert/> */}
 
           <Routes>
             <Route exact path='/' element={<Hero />} />
