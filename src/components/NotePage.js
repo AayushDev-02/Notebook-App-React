@@ -7,7 +7,7 @@ const NotePage = () => {
 
 
     return (
-        <div>
+        <div className=''>
             
             <NotesComponent />
 
