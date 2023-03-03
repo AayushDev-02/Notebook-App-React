@@ -1,5 +1,4 @@
 import React from 'react'
-import AddNote from './AddNote'
 
 import NotesComponent from './NotesComponent'
 
