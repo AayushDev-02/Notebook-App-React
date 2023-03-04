@@ -85,9 +85,9 @@ const NotesComponent = () => {
         </div>
       </div>
 
-      <div className='max-w-full mx-20 my-20 p-5 text-primary_text'>
+      <div className='max-w-full mx-24 my-20 p-5 text-primary_text'>
         <h2 className='text-4xl my-5'>Your notes</h2>
-        <div className='flex-wrap flex gap-5 w-fit '>
+        <div className='flex-wrap flex gap-2 w-fit '>
           {notes.map((note) => {
             return <NoteItem key={note._id} updateNote={updateNote} note={note} />
           })}

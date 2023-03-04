@@ -10,14 +10,15 @@ const NoteItem = (props) => {
     const context = useContext(noteContext)
     const {  deleteNote } = context;
     return (
-        <div className='text-primary_text flex max-h-min max-w-xl  '>
+        <div className='text-primary_text flex max-h-min max-w-xl font-poppins'>
 
-            <div  className="  w-full p-6 space-y-5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <div  className="  w-full p-6 space-y-5 bg-black hover:bg-black/30 hover:border-secondary_Text/10 border-transparent border-2 rounded-lg shadow">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{note.title}</h5>
                 <p className="font-normal text-gray-700 dark:text-gray-400">{note.description}</p>
-                <div className='flex space-x-5'>
-                    <div onClick={() => {deleteNote(note._id)}}><AiFillDelete  /></div>
-                    <div ><MdModeEdit onClick={() => {updateNote(note)}}/></div>
+                <div className='px-3 py-1 rounded-full bg-brand w-fit text-sm text-primary font-bold'>{note.tag}</div>
+                <div className='flex space-x-5 text-xl'>
+                    <div onClick={() => {deleteNote(note._id)}}><AiFillDelete className='hover:text-brand cursor-pointer'  /></div>
+                    <div ><MdModeEdit className='hover:text-brand cursor-pointer' onClick={() => {updateNote(note)}}/></div>
                 </div>
             </div>
         </div>
