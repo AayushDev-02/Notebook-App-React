@@ -62,20 +62,20 @@ const NotesComponent = () => {
               <form className='bg-slate-100 p-5'>
                 <div className="mb-6">
                   <label htmlFor='etitle' className="block mb-2 text-lg font-medium text-red-600">Title</label>
-                  <input onChange={onChange} type="text" name='etitle' id="etitle" className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "  value={note.etitle} placeholder="name@flowbite.com" required />
+                  <input onChange={onChange} minLength={5} type="text" name='etitle' id="etitle" className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "  value={note.etitle} placeholder="name@flowbite.com" required />
                 </div>
                 <div className="mb-6">
                   <label htmlFor="edescription" className="block mb-2 text-lg font-medium text-red-600">Description</label>
-                  <input onChange={onChange} type="text" id="edescription" name='edescription' className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "  value={note.edescription} required />
+                  <input onChange={onChange} minLength={5} type="text" id="edescription" name='edescription' className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "  value={note.edescription} required />
                 </div>
                 <div className=" items-start mb-6">
 
                   <label htmlFor="etag" className="block mb-2 text-lg font-medium text-red-600">Tag</label>
-                  <input onChange={onChange} type="text" id="etag" name='etag' className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "   value={note.etag} required />
+                  <input onChange={onChange}  type="text" id="etag" name='etag' className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "   value={note.etag}  />
 
                 </div>
                 <div className='flex space-x-2'>
-                <button data-modal-hide="defaultModal2" onClick={handleClick} type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit Note</button>
+                <button data-modal-hide="defaultModal2" disabled={note.etitle.length < 5 || note.edescription.length < 5} onClick={handleClick} type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit Note</button>
                 <button data-modal-hide="defaultModal2" type="button" className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
                 </div>
               </form>
@@ -88,6 +88,7 @@ const NotesComponent = () => {
       <div className='max-w-full mx-24 my-20 p-5 text-primary_text'>
         <h2 className='text-4xl my-5'>Your notes</h2>
         <div className='flex-wrap flex gap-2 w-fit '>
+          {notes.length===0 && 'No notes to display'}
           {notes.map((note) => {
             return <NoteItem key={note._id} updateNote={updateNote} note={note} />
           })}

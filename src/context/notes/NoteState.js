@@ -42,22 +42,13 @@ const NoteState = (props) => {
       body: JSON.stringify({ title, description, tag }), // body data type must match "Content-Type" header
     });
 
-    // eslint-disable-next-line
-    const json = response.json(); // parses JSON response into native JavaScript objects
-
-
     //client side logic
-    console.log("Adding a new note")
-    const note = {
-      "_id": "63f656bf2f29a2adee0cfaa0wawd",
-      "user": "63f62ba0267f6d97e007822510",
-      "title": title,
-      "description": description,
-      "tag": tag,
-      "date": "2023-02-22T17:54:07.961Z",
-      "__v": 0
-    };
+    // eslint-disable-next-line
+    const note = await response.json(); // parses JSON response into native JavaScript objects
+
     setNotes(notes.concat(note));
+
+   
   }
 
   //delete a note
@@ -72,12 +63,13 @@ const NoteState = (props) => {
 
       }
     });
-
+    
+    // eslint-disable-next-line
     const json = await response.json();
-    console.log(json);
+    
 
     // client side logic
-    console.log("Deleting a note" + id);
+    // console.log("Deleting a note" + id);
     const newNotes = notes.filter((note) => { return note._id !== id });
     setNotes(newNotes)
   }

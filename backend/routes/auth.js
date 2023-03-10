@@ -78,7 +78,7 @@ router.post('/login', [
 ], async (req, res) => {
     //if there are errors - return bad request and the errors
     const errors = validationResult(req);
-
+    let success = false;
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
@@ -88,13 +88,15 @@ router.post('/login', [
 
         let user = await User.findOne({ email });
         if (!user) {
+            success = false;
             return res.status(400).json({ errors: [{ msg: 'Invalid Credentials ' }] });
         }
 
         const passwordCompare = await bcrypt.compare(password, user.password);
 
         if (!passwordCompare) {
-            return res.status(400).json({ errors: [{ msg: 'Invalid Credentials ' }] });
+            success=false;
+            return res.status(400).json({success, errors: [{ msg: 'Invalid Credentials ' }] });
         }
 
         const data = {
@@ -104,8 +106,8 @@ router.post('/login', [
         }
 
         const authToken = jwt.sign(data, JWT_SECRET);
-
-        res.json({ authToken })
+        success = true;
+        res.json({ success,authToken })
 
     } catch (error) {
         console.error(error.message);
