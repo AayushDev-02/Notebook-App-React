@@ -1,6 +1,7 @@
 # Notebook App
 
-A MERN Stack notes keeping app.
+A MERN Stack notes keeping app. 
+### Tech Used - `React`, `Mongo DB`, `Mongoose`, `Express`, `NodeJS`, `Tailwind CSS`, `React router-dom`, etc.
 
 
 ## Screenshots
