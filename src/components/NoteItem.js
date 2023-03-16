@@ -17,7 +17,7 @@ const NoteItem = (props) => {
                 <p className="font-normal text-gray-700 dark:text-gray-400">{note.description}</p>
                 <div className='px-3 py-1 rounded-full bg-brand w-fit text-sm text-primary font-bold'>{note.tag}</div>
                 <div className='flex space-x-5 text-xl'>
-                    <div onClick={() => {deleteNote(note._id)}}><AiFillDelete className='hover:text-brand cursor-pointer'  /></div>
+                    <div onClick={() => {deleteNote(note._id); props.showAlert("Deleted Successfully");}}><AiFillDelete className='hover:text-brand cursor-pointer'  /></div>
                     <div ><MdModeEdit className='hover:text-brand cursor-pointer' onClick={() => {updateNote(note)}}/></div>
                 </div>
             </div>

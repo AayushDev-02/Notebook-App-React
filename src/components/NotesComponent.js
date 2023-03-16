@@ -4,7 +4,7 @@ import noteContext from '../context/notes/noteContext'
 import AddNote from './AddNote'
 import NoteItem from './NoteItem'
 import { useState } from 'react'
-const NotesComponent = () => {
+const NotesComponent = (props) => {
 
   const context = useContext(noteContext)
   const { notes, getNotes, editNote } = context;
@@ -31,6 +31,7 @@ const NotesComponent = () => {
     e.preventDefault();
     editNote(note.id, note.etitle, note.edescription, note.etag);
     // addNote(note.title, note.description, note.tag);
+    props.showAlert("Updated Successfully");
   }
 
 
@@ -38,7 +39,7 @@ const NotesComponent = () => {
   return (
 
     <div>
-      <AddNote />
+      <AddNote showAlert={props.showAlert} />
       <button ref={ref} data-modal-target="defaultModal2" data-modal-toggle="defaultModal2" className=" hidden text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
         Edit Note
       </button>
@@ -90,7 +91,7 @@ const NotesComponent = () => {
         <div className='flex-wrap flex gap-2 w-fit '>
           {notes.length===0 && 'No notes to display'}
           {notes.map((note) => {
-            return <NoteItem key={note._id} updateNote={updateNote} note={note} />
+            return <NoteItem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert} />
           })}
         </div>
       </div>
