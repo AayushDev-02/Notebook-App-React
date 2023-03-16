@@ -18,12 +18,14 @@ router.post('/createuser', [
 
 ], async (req, res) => {
 
+    let success = false;
+
     //if there are errors - return bad request and the errors
 
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({ success ,errors: errors.array() });
     }
 
     //check whether the user with this email exists already
@@ -32,7 +34,7 @@ router.post('/createuser', [
 
         let user = await User.findOne({ email: req.body.email });
         if (user) {
-            return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
+            return res.status(400).json({ success, errors: [{ msg: 'User already exists' }] });
         }
 
         // creating salt - retunrs a promise
@@ -56,8 +58,10 @@ router.post('/createuser', [
         //creating a jwt token
         const authToken = jwt.sign(data, JWT_SECRET);
 
+        success = true;
+
         // sending the auth token to the frontend - return to the user when he logs in
-        res.json({ authToken })
+        res.json({ success, authToken })
 
     } catch (error) {
         console.error(error.message);
