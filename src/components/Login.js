@@ -3,7 +3,7 @@ import { FaReact } from 'react-icons/fa'
 import { SiExpress, SiMongodb, SiTailwindcss } from 'react-icons/si'
 import { FaNodeJs } from 'react-icons/fa'
 import {useState} from 'react'
-import {Navigate, useNavigate} from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 
 const Login = (props) => {
 
@@ -29,7 +29,7 @@ const Login = (props) => {
     console.log(json);
     if(json.success){
       // save the auth token and redirect redirect
-      localStorage.setItem("authToken", json.authToken);
+      localStorage.setItem("token", json.authToken);
       navigate("/notepage");
       props.showAlert("Logged In Successfully");
 

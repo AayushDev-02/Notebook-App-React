@@ -25,14 +25,14 @@ function App() {
 
     setTimeout(() =>{
       setAlert(null);
-    }, 1500)
+    }, 2000)
   }
 
   return (
     <>
       <NoteState>
         <Router>
-          <Navbar />
+          <Navbar showAlert={showAlert} />
           <Alert alert={alert}/>
 
           <Routes>

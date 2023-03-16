@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link , useLocation} from "react-router-dom";
+import { Link , useLocation, useNavigate} from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
 
 
 
@@ -9,6 +9,14 @@ const Navbar = () => {
   React.useEffect(() => {
     // console.log(location.pathname);
   }, [location]);
+
+  let navigate = useNavigate();
+
+  const handleLogout = () =>{
+    localStorage.removeItem('token');
+    navigate("/login");
+    props.showAlert("Logged Out Successfully");
+  }
 
   return (
     <nav className=" px-5 md:px-2 sm:px-4 py-2.5 bg-primary font-poppins md:mt-2 lg:mt-0">
@@ -29,12 +37,14 @@ const Navbar = () => {
             <li className='p-0 md:p-2'>
               <Link to="/about" className={`block py-2 pl-3 pr-4 hover:underline decoration-2 underline-offset-8 decoration-brand ${location.pathname === '/about' ? 'underline' : ''}  md:p-0 `}>About</Link>
             </li>
-            <li className='p-0 md:p-2'>
+            {!localStorage.getItem('token') ? <li className='p-0 md:p-2'>
               <Link to="/login" className={`block py-2 pl-3 pr-4 hover:underline decoration-2 underline-offset-8 decoration-brand ${location.pathname === '/login' ? 'underline' : ''}  md:p-0 `}>Login</Link>
-            </li>
-            <li className='hidden sm:flex md:py-2 md:px-3 items-center justify-center  rounded-lg bg-brand text-primary font-bold text-sm'>
+            </li> : ""}
+            {!localStorage.getItem('token')  ? <li className='hidden sm:flex md:py-2 md:px-3 items-center justify-center  rounded-lg bg-brand text-primary font-bold text-sm'>
               <Link to="/signup" className={`block py-2 pl-3 pr-4  md:p-0 `}>Sign Up - It's Free</Link>
-            </li>
+            </li> : <li onClick={handleLogout} className='hidden sm:flex md:py-2 md:px-3 items-center justify-center  rounded-lg bg-brand text-primary font-bold text-sm'>
+              <Link to="/signup" className={`block py-2 pl-3 pr-4  md:p-0 `}>Log Out</Link>
+            </li>}
 
             
           </ul>
