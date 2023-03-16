@@ -9,6 +9,8 @@ const NoteItem = (props) => {
     const { note,updateNote } = props;
     const context = useContext(noteContext)
     const {  deleteNote } = context;
+
+    
     return (
         <div className='text-primary_text flex max-h-min max-w-xl font-poppins'>
 

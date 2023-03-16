@@ -13,12 +13,16 @@ const AddNote = (props) => {
     const addNoteFunc = (e) => {
         e.preventDefault();
         addNote(note.title, note.description, note.tag);
+        setModal(false);
         props.showAlert("Added Successfully");
     }
     const onChange = (e) => {
         setNote({ ...note, [e.target.name]: e.target.value })
     }
-    const ref = useRef(null);
+
+    const [modal, setModal] = useState(false);
+
+  
 
     return (
 
@@ -30,7 +34,7 @@ const AddNote = (props) => {
                     <div className='w-full bg-gradient-to-b from-transparent to-black backdrop-blur-md px-10 py-8 rounded-lg space-y-10'>
                         <h1 className='text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-primary_text '>Welcome</h1>
 
-                        <button ref={ref} data-modal-target="defaultModal" data-modal-toggle="defaultModal" className=" text-primary items-center justify-center bg-primary_text border-2 flex focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">
+                        <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" onClick={() => setModal(true)} className=" text-primary items-center justify-center bg-primary_text border-2 flex focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             <span className='font-bold'>New Note</span>
                             <BsPlus className=' text-xl font-bold' />
 
@@ -38,16 +42,16 @@ const AddNote = (props) => {
                     </div>
                 </div>
             </div>
-            <div id="defaultModal" tabIndex="-1" aria-hidden="true" className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
-                <div className="relative w-full h-full max-w-2xl md:h-auto">
+            {modal && <div  id="defaultModal" aria-hidden='true' tabindex="-1" className="fixed  top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full" type="button">
+                <div className="relative mx-auto mt-52 w-full h-full max-w-2xl md:h-auto">
                     {/* <!-- Modal content --> */}
-                    <div className="relative rounded-lg shadow-2xl bg-black">
+                    <div className="relative rounded-lg border-[1px] bg-black">
                         {/* <!-- Modal header --> */}
                         <div className="flex items-start justify-between p-4 border-b rounded-t border-secondary">
                             <h3 className="text-xl font-semibold text-primary_text">
                                 Add New Note
                             </h3>
-                            <button type="button" className="text-secondary_Text bg-transparent hover:bg-brand hover:text-primary rounded-lg text-sm p-1.5 ml-auto inline-flex items-center " data-modal-hide="defaultModal">
+                            <button type="button" className="text-secondary_Text bg-transparent hover:bg-brand hover:text-primary rounded-lg text-sm p-1.5 ml-auto inline-flex items-center " onClick={() => setModal(false)}>
                                 <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                                 <span className="sr-only">Close modal</span>
                             </button>
@@ -70,13 +74,13 @@ const AddNote = (props) => {
                                     <input onChange={onChange} type="text" id="tag" name='tag' className="bg-secondary text-primary_text border-none focus:ring-0 focus:outline-none text-sm rounded-lg block w-full p-2.5 " placeholder='Enter a tag...'  />
 
                                 </div>
-                                <button data-modal-hide="defaultModal" disabled={note.title.length < 5 || note.description.length < 5} onClick={addNoteFunc} type="submit" className="text-black bg-brand focus:ring-0 focus:outline-none font-bold  rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">Add Note</button>
+                                <button  disabled={note.title.length < 5 || note.description.length < 5} onClick={addNoteFunc} type="submit" className="text-black bg-brand focus:ring-0 focus:outline-none font-bold  rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">Add Note</button>
                             </form>
                         </div>
                        
                     </div>
                 </div>
-            </div>
+            </div>}
         </div>
     )
 }
