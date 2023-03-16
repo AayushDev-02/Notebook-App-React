@@ -1,3 +1,19 @@
+# Notebook App
+
+A MERN Stack notes keeping app. 
+### Tech Used - `React`, `Mongo DB`, `Mongoose`, `Express`, `NodeJS`, `Tailwind CSS`, `React router-dom`, etc.
+
+
+## Screenshots
+![image](https://user-images.githubusercontent.com/105657470/224215467-fab40631-276b-4169-8fc8-c47f55ef1f9f.png)
+![image](https://user-images.githubusercontent.com/105657470/224215577-ebbd3c76-3fbd-49c2-918d-8b4cc5b3d7ad.png)
+![image](https://user-images.githubusercontent.com/105657470/224215624-8874bc7d-ac28-46a5-a408-0884b009595c.png)
+![image](https://user-images.githubusercontent.com/105657470/224215695-8718fc23-70d6-4ffa-adec-19bc504becab.png)
+![image](https://user-images.githubusercontent.com/105657470/224215738-0271a57b-401d-4ccd-ad7e-c87b95b41ddd.png)
+![image](https://user-images.githubusercontent.com/105657470/224215784-a6c9d2b6-b5a9-467d-adfc-3246adbec9a2.png)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
