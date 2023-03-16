@@ -1,11 +1,18 @@
 import React from 'react'
 
-const Alert = () => {
+const Alert = (props) => {
+
+    const capitalize = (word) =>{
+        const lower = word.toLowerCase();
+        return lower.charAt(0).toUpperCase() + lower.slice(1);
+    }
+
     return (
-        <div id="alert-border-5" className="flex p-4 border-t-4 border-gray-300 bg-gray-50 dark:bg-gray-800 dark:border-gray-600" role="alert">
+        
+        props.alert && <div id="alert-border-5" className="flex p-4 border-t-4 border-gray-300 bg-gray-50 dark:bg-gray-800 dark:border-gray-600" role="alert">
             <svg className="flex-shrink-0 w-5 h-5 text-gray-800 dark:text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path></svg>
-            <div className="ml-3 text-sm font-medium text-gray-800 dark:text-gray-300">
-                A simple dark alert with an <a href="/" className="font-semibold underline hover:text-gray-800 hover:no-underline">example link</a>. Give it a click if you like.
+             <div className="ml-3 text-sm font-medium text-gray-800 dark:text-gray-300">
+                {props.alert.msg}
             </div>
             <button type="button" className="ml-auto -mx-1.5 -my-1.5 bg-gray-50 text-gray-500 rounded-lg focus:ring-2 focus:ring-gray-400 p-1.5 hover:bg-gray-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" data-dismiss-target="#alert-border-5" aria-label="Close">
                 <span className="sr-only">Dismiss</span>

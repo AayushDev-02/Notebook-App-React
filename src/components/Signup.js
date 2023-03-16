@@ -4,7 +4,7 @@ import { FaReact } from 'react-icons/fa'
 import { SiExpress, SiMongodb, SiTailwindcss } from 'react-icons/si'
 import { FaNodeJs } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-const Signup = () => {
+const Signup = (props) => {
 
   const [credentials, setCredentials] = useState({
     name: "",
@@ -30,10 +30,17 @@ const Signup = () => {
     const json = await response.json();
     console.log(json);
 
-    // save the auth token and redirect redirect
-    localStorage.setItem("authToken", json.authToken);
-    navigate("/notepage");
+    if(json.success){
 
+      // save the auth token and redirect redirect
+      localStorage.setItem("authToken", json.authToken);
+      navigate("/notepage");
+      props.showAlert("Account Created Succfully");
+      
+    }
+    else{
+      props.showAlert("Invalid Details");
+    }
 
 
   }

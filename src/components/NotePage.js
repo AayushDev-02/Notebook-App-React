@@ -3,13 +3,13 @@ import React from 'react'
 import NotesComponent from './NotesComponent'
 
 
-const NotePage = () => {
+const NotePage = (props) => {
 
-
+    const {showAlert} = props 
     return (
         <div className=''>
             
-            <NotesComponent />
+            <NotesComponent showAlert={showAlert} />
 
         </div>
     )

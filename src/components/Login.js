@@ -5,7 +5,7 @@ import { FaNodeJs } from 'react-icons/fa'
 import {useState} from 'react'
 import {Navigate, useNavigate} from 'react-router-dom'
 
-const Login = () => {
+const Login = (props) => {
 
   const [credentials, setCredentials] = useState({
     email: "",
@@ -31,8 +31,11 @@ const Login = () => {
       // save the auth token and redirect redirect
       localStorage.setItem("authToken", json.authToken);
       navigate("/notepage");
+      props.showAlert("Logged In Successfully");
+
     }else{
-      alert("Invalid Credentials")
+      props.showAlert("Invalid Credentials");
+      
     }
 
   }
